@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link class="jsbin"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+          rel="stylesheet"
+          type="text/css" />
+    <script
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+    </script>
+
+    <script
+            class="jsbin"
+            src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js">
+    </script>
     <meta charset="UTF-8">
     <title>Dating Website</title>
     <style>
@@ -40,7 +53,7 @@
             text-align:left;
             width:40px;
         }
-
+        #preview
 
         #Range1{:left;}
     </style>
@@ -49,9 +62,9 @@
   <form>
     <fieldset>
         <legend>Your face</legend>
-        <input type="file" required><br>
-        <label>Image Preview:</label>
-        <img id="preview">
+        <input type='file' onchange="readURL(this);" />
+        <br> <label>Image Preview:</label>
+        <img id="preview" src="#" alt="your img"/>
     </fieldset>
   </form>
   <form>
@@ -177,5 +190,32 @@
 <form>
     <input type="submit">
 </form>
+  <script type="text/javascript">
+
+      function readURL(input) {
+
+          if (input.files && input.files[0]) {
+
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+
+                  $('#preview')
+
+                          .attr('src', e.target.result)
+
+                          .width(150)
+
+                          .height(200);
+
+              };
+
+              reader.readAsDataURL(input.files[0]);
+
+          }
+
+      }
+
+  </script>
 </body>
 </html>
